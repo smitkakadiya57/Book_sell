@@ -1,4 +1,3 @@
 # Book Selling Website
-## Tatvasoft Internship Project
-## By Smit Kakadiya
-  
+<h3> Tatvasoft Internship Project </h3>
+<h2> By Smit Kakadiya </h2>
