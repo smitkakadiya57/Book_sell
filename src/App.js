@@ -6,19 +6,27 @@ import Footer from "./components/Footer";
 import Login from "./pages/Login";
 import EditProduct from "./pages/EditProduct";
 
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import "./css/style.css";
 
 const App = () => {
   return (
-    <div>
-      <Navbar />
-      <SearchBar/>
-      <BreadCrumb/>
-      {/* <Registration /> */}
-      <Login/>
-      {/* <EditProduct/> */}
-      <Footer/>
-    </div>
+    <>
+      <BrowserRouter>
+        <Navbar />
+        <SearchBar />
+        <BreadCrumb />
+        <Routes>
+          <Route path="/" element={<Login/>} />
+          <Route path="/login" element={<Login/>} />
+          <Route path="/register" element={<Registration />} />
+          <Route path="/edit" element={<EditProduct/>} />
+          
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </>
   );
 };
 

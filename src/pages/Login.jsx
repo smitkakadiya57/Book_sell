@@ -8,6 +8,11 @@ import { List, ListItem, ListItemText, ListItemIcon } from "@mui/material";
 import CircleIcon from "@mui/icons-material/Circle";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { Link } from "react-router-dom";
+
+const linkStyle = {
+  textDecoration: "none",
+};
 
 const initialValues = {
   email: "",
@@ -70,17 +75,19 @@ const Login = () => {
                 <ListItemText>View and track orers and more</ListItemText>
               </ListItem>
             </List>
-            <Button
-              variant="contained"
-              color="error"
-              sx={{
-                textTransform: "capitalize",
-                backgroundColor: "#f14d54",
-                fontWeight: "600",
-              }}
-            >
-              Create an Account
-            </Button>
+            <Link to="/register" style={linkStyle}>
+              <Button
+                variant="contained"
+                color="error"
+                sx={{
+                  textTransform: "capitalize",
+                  backgroundColor: "#f14d54",
+                  fontWeight: "600",
+                }}
+              >
+                Create an Account
+              </Button>
+            </Link>
           </Grid>
           <Grid item md={6} xs={12}>
             <Typography variant="h6" gutterBottom style={{ fontWeight: 600 }}>

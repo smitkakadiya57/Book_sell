@@ -1,20 +1,25 @@
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import Typography from "@mui/material/Typography";
+import { Link } from "react-router-dom";
+
+const linkStyle = {
+  textDecoration: "none",
+  color: "black",
+};
 
 const BreadCrumb = () => {
   const breadcrumbs = [
-    <Typography key="1" >
-   Home
-    </Typography>,
-    <Typography key="2" color="error">
+    <Link key="1" style={linkStyle} to="/">
+      Home
+    </Link>,
+    <Link key="2" style={linkStyle} to="/register">
       Create an Account
-    </Typography>,
+    </Link>,
   ];
   return (
     <Breadcrumbs
       separator={<NavigateNextIcon fontSize="small" />}
-        sx={{marginY:"20px",display:"flex",justifyContent:"center" }}
+      sx={{ marginY: "20px", display: "flex", justifyContent: "center" }}
     >
       {breadcrumbs}
     </Breadcrumbs>
