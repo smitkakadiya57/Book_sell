@@ -4,6 +4,10 @@ import SearchBar from "./components/SearchBar";
 import BreadCrumb from "./components/BreadCrumb";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
+import EditProduct from "./pages/EditProduct";
+
+import "./css/style.css";
+
 const App = () => {
   return (
     <div>
@@ -11,7 +15,8 @@ const App = () => {
       <SearchBar/>
       <BreadCrumb/>
       {/* <Registration /> */}
-      <Login/>
+      {/* <Login/> */}
+      <EditProduct/>
       <Footer/>
     </div>
   );
