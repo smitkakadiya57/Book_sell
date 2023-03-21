@@ -14,9 +14,9 @@ const App = () => {
       <Navbar />
       <SearchBar/>
       <BreadCrumb/>
-      {/* <Registration /> */}
+      <Registration />
       {/* <Login/> */}
-      <EditProduct/>
+      {/* <EditProduct/> */}
       <Footer/>
     </div>
   );
