@@ -6,7 +6,29 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { List, ListItem, ListItemText, ListItemIcon } from "@mui/material";
 import CircleIcon from "@mui/icons-material/Circle";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+
+const initialValues = {
+  email: "",
+  pass: "",
+};
+
+const loginSchema = Yup.object({
+  email: Yup.string().email().required("Please enter your email"),
+  pass: Yup.string().min(6).required("Pleaase enter password with min 6 char"),
+});
 const Login = () => {
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: loginSchema,
+      onSubmit: (values) => {
+        console.log("form vals", values);
+        alert("sucessfull");
+      },
+    });
+
   return (
     <Container maxWidth="lg">
       <Box sx={{ display: "flex", flexDirection: "column", gap: "20px" }}>
@@ -20,8 +42,7 @@ const Login = () => {
         </Typography>
 
         <Grid container spacing={5}>
-          
-          <Grid item md={6} xs={12} >
+          <Grid item md={6} xs={12}>
             <Typography variant="h6" gutterBottom style={{ fontWeight: 600 }}>
               New Customers
             </Typography>
@@ -50,16 +71,16 @@ const Login = () => {
               </ListItem>
             </List>
             <Button
-                  variant="contained"
-                  color="error"
-                  sx={{
-                    textTransform: "capitalize",
-                    backgroundColor: "#f14d54",
-                    fontWeight:"600"
-                  }}
-                >
-                  Create an Account
-                </Button>
+              variant="contained"
+              color="error"
+              sx={{
+                textTransform: "capitalize",
+                backgroundColor: "#f14d54",
+                fontWeight: "600",
+              }}
+            >
+              Create an Account
+            </Button>
           </Grid>
           <Grid item md={6} xs={12}>
             <Typography variant="h6" gutterBottom style={{ fontWeight: 600 }}>
@@ -69,33 +90,60 @@ const Login = () => {
             <Typography variant="body1" gutterBottom color="grey">
               If you have an account with us please log in
             </Typography>
-            <Grid container spacing={3}>
-              <Grid item xs={12}>
-                <Typography variant="body1" gutterBottom>
-                  Email Address *
-                </Typography>
-                <TextField type="email" size="small" fullWidth />
+            <form onSubmit={handleSubmit}>
+              <Grid container spacing={3}>
+                <Grid item xs={12}>
+                  <Typography variant="body1" gutterBottom>
+                    Email Address *
+                  </Typography>
+                  <TextField
+                    type="email"
+                    size="small"
+                    fullWidth
+                    name="email"
+                    value={values.email}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    helperText={
+                      errors.email && touched.email ? errors.email : null
+                    }
+                    error={errors.email && touched.email}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography variant="body1" gutterBottom>
+                    Password *
+                  </Typography>
+                  <TextField
+                    type="password"
+                    size="small"
+                    fullWidth
+                    name="pass"
+                    value={values.pass}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    helperText={
+                      errors.pass && touched.pass ? errors.pass : null
+                    }
+                    error={errors.pass && touched.pass}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Button
+                    variant="contained"
+                    color="error"
+                    type="submit"
+                    sx={{
+                      textTransform: "capitalize",
+                      backgroundColor: "#f14d54",
+                      fontWeight: "600",
+                    }}
+                  >
+                    Login
+                  </Button>
+                </Grid>
               </Grid>
-              <Grid item xs={12}>
-                <Typography variant="body1" gutterBottom>
-                  Password *
-                </Typography>
-                <TextField type="password" size="small" fullWidth />
-              </Grid>
-              <Grid item xs={12}>
-                <Button
-                  variant="contained"
-                  color="error"
-                  sx={{
-                    textTransform: "capitalize",
-                    backgroundColor: "#f14d54",
-                    fontWeight:"600"
-                  }}
-                >
-                  Login
-                </Button>
-              </Grid>
-            </Grid>
+            </form>
           </Grid>
         </Grid>
       </Box>
